@@ -24,3 +24,11 @@ To test the Motor controller with ROS
 
 
 
+
+## Pictures of the RObot
+
+
+![GitHub Logo](docs/side.jpg)
+
+
+![GitHub Logo](docs/back.jpg)
