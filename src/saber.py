@@ -6,18 +6,18 @@ from geometry_msgs.msg import Twist, Pose
 import rospy , time
 import serial.tools.list_ports as port
 #import pylcdlib
-print "\nInit sabertooth....\n"
+print ("\nInit sabertooth....\n")
 
-print "\nDetecting sabertooth....\n"
+print ("\nDetecting sabertooth....\n")
 portlist = list(port.comports())
-print portlist
+print (portlist)
 address = ''
 for p in portlist:
-    print p
+    print (p)
     if 'Sabertooth' in str(p):
         address = str(p).split(" ")
-print "\nAddress found @"
-print address[0]
+print ("\nAddress found @")
+print (address[0])
 speed1 = 0
 speed2 = 0
 
@@ -66,7 +66,7 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
 
 def callback(data):
     #print data
-    saber.text('m1:startup')
+    saber.text("m1:startup")
     saber.text('1,p100')
     saber.text('md:1000\r\n')
     
@@ -95,11 +95,11 @@ def callback(data):
         
 
     if(angle < 0):
-        print "negative"
+        print ("negative")
         saber.drive(1,speed2)
         saber.drive(2,speed1)
     elif (angle > 0):
-        print "positive"
+        print ("positive")
         saber.drive(1,speed2)
         saber.drive(2,speed1)
     
@@ -115,7 +115,7 @@ def callback(data):
     #print message
 
 def sabertoothStatusCallback(data):
-    print data
+    print (data)
     temperature = ('T [C]: {}'.format(saber.textGet('m2:gett')))
     
     saber.textGet('T,start')
@@ -123,7 +123,7 @@ def sabertoothStatusCallback(data):
     saber.textGet('1, home')
     
     battery = ('battery [mV]: {}'.format(saber.textGet('m2:getb'))) 
-    print battery , temperature
+    print (battery , temperature)
     #lcd.lcd_write(0x0C) #Cursor uitschakelen.
     #lcd.lcd_write(0x01) #Scherm leegmaken.
     #lcd.lcd_puts("Hallo", 1) #Tekst voor LCD display lijn 1.
